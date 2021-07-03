@@ -25,10 +25,7 @@ namespace Sort.Algorithms
 			int start = (int)Math.Floor((decimal)(size - 2) / 2);
 
 			while (start >= 0)
-			{
-				_orderHeap(vector, start, size - 1);
-				start--;
-			}
+				_orderHeap(vector, start--, size - 1);
 		}
 
 		private void _orderHeap(int[] vector, int start, int end)

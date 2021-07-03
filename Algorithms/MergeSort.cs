@@ -36,16 +36,10 @@ namespace Sort.Algorithms
 			for (int index = start; index <= end; index++)
 			{
 				if (mergeVector[firstHalfIndex] <= mergeVector[secondHalfIndex])
-				{
-					vector[index] = mergeVector[firstHalfIndex];
-					firstHalfIndex++;
-				}
+					vector[index] = mergeVector[firstHalfIndex++];
 
 				else
-				{
-					vector[index] = mergeVector[secondHalfIndex];
-					secondHalfIndex--;
-				}
+					vector[index] = mergeVector[secondHalfIndex--];
 			}
 		}
 	}

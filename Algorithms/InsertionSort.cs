@@ -17,10 +17,7 @@ namespace Sort.Algorithms
 					int currentIndex = index;
 
 					while (currentIndex != 0 && vector[currentIndex - 1] > vector[currentIndex])
-					{
-						vector.Swap(currentIndex - 1, currentIndex);
-						currentIndex--;
-					}
+						vector.Swap(currentIndex - 1, currentIndex--);
 				}
 			} while (!sorted);
 		}
