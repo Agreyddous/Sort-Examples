@@ -29,7 +29,7 @@ namespace Sort
 			}
 		}
 
-		private static int AskForAction() => IO.AskForSomething("What action should be perfomed?\n1 - Normal test\n2 - Benchmark\n", Enumerable.Range(1, 2).ToArray());
+		private static int AskForAction() => IO.AskForSomething("What action should be perfomed?\n1 - Normal test\n2 - Benchmark", Enumerable.Range(1, 2).ToArray());
 
 		private static int AskForAlgorithm(MethodInfo[] availableMethods) => IO.AskForSomething($"What sort algorithm should be used?\n{availableMethods.DisplayAvailableMethods()}", Enumerable.Range(1, availableMethods.Count()).ToArray()) - 1;
 
@@ -72,15 +72,32 @@ namespace Sort
 			PrintVector(executionTime, unorderedVector, vector);
 		}
 
+		private static TimeSpan BenchmarkAlgorithm(Action<int[]> algorithm, int[][] vectors)
+		{
+			TimeSpan[] executionsResults = new TimeSpan[vectors.Length];
+
+			for (int index = 0; index < vectors.Length; index++)
+				executionsResults[index] = TimeAlgorithm(algorithm, vectors[index].Copy());
+
+			return TimeSpan.FromTicks(executionsResults.Sum(executionResult => executionResult.Ticks) / vectors.Length);
+		}
+
 		private static void ExecuteBenchmarkTest(int size, int minimum, int maximum)
 		{
-			int[] vector = new int[size].Initialize(minimum, maximum);
+			if (!int.TryParse(IO.Ask("How many times should each algorithm be executed? (Default is 100)"), out int executionsCount))
+				executionsCount = 100;
+
+			int[][] vectors = new int[executionsCount][];
+
+			for (int index = 0; index < executionsCount; index++)
+				vectors[index] = new int[size].Initialize(minimum, maximum);
+
 			Dictionary<string, TimeSpan> executions = new Dictionary<string, TimeSpan>();
 
 			foreach (MethodInfo method in SorterExtensions.GetAvailableMethods())
-				executions.Add(method.GetAlgorithmName(), TimeAlgorithm(method.GetMethod<Action<int[]>>(), vector.Copy()));
+				executions.Add(method.GetAlgorithmName(), BenchmarkAlgorithm(method.GetMethod<Action<int[]>>(), vectors));
 
-			PrintBenchmark(executions);
+			PrintBenchmark(executions, executionsCount);
 		}
 
 		private static Action<int[]> ResolveAlgorithmToUse()
@@ -111,9 +128,11 @@ namespace Sort
 				Console.WriteLine("\nSort was not valid, some errors have been found!");
 		}
 
-		public static void PrintBenchmark(Dictionary<string, TimeSpan> executions)
+		public static void PrintBenchmark(Dictionary<string, TimeSpan> executions, int executionsCount)
 		{
 			Console.Clear();
+
+			Console.WriteLine($"Each algorithm was executed {executionsCount} time(s)\n");
 
 			foreach (KeyValuePair<string, TimeSpan> execution in executions.OrderBy(execution => execution.Value))
 				Console.WriteLine($"{execution.Key} - {execution.Value}");

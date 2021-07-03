@@ -20,7 +20,7 @@ namespace Sort.Extensions
 			for (int index = 0; index < availableMethods.Length; index++)
 				result += $"{index + 1} - {availableMethods[index].GetAlgorithmName()}\n";
 
-			return result;
+			return result.Trim('\n');
 		}
 	}
 }
