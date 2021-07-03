@@ -22,5 +22,13 @@ namespace Sort.Extensions
 
 			return copyVector;
 		}
+
+		public static void Swap(this int[] vector, int firstIndex, int secondIndex)
+		{
+			int firstIndexCurrentValue = vector[firstIndex];
+
+			vector[firstIndex] = vector[secondIndex];
+			vector[secondIndex] = firstIndexCurrentValue;
+		}
 	}
 }

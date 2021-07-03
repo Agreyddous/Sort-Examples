@@ -1,3 +1,5 @@
+using Sort.Extensions;
+
 namespace Sort.Algorithms
 {
 	public partial class Sorter
@@ -12,7 +14,7 @@ namespace Sort.Algorithms
 					if (vector[index] < vector[minimumValueFoundIndex])
 						minimumValueFoundIndex = index;
 
-				Swap(vector, iteratorIndex, minimumValueFoundIndex);
+				vector.Swap(iteratorIndex, minimumValueFoundIndex);
 			}
 		}
 	}

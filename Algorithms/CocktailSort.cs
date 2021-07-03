@@ -1,3 +1,5 @@
+using Sort.Extensions;
+
 namespace Sort.Algorithms
 {
 	public partial class Sorter
@@ -13,7 +15,7 @@ namespace Sort.Algorithms
 				for (int index = 0; index < vector.Length - 1; index++)
 					if (vector[index] > vector[index + 1])
 					{
-						Swap(vector, index, index + 1);
+						vector.Swap(index, index + 1);
 						sorted = false;
 					}
 
@@ -24,7 +26,7 @@ namespace Sort.Algorithms
 					for (int index = vector.Length - 1; 0 < index; index--)
 						if (vector[index - 1] > vector[index])
 						{
-							Swap(vector, index - 1, index);
+							vector.Swap(index - 1, index);
 							sorted = false;
 						}
 				}

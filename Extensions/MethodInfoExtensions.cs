@@ -11,7 +11,7 @@ namespace Sort.Extensions
 
 		public static string GetAlgorithmName(this MethodInfo method) => _algorithmNameRegex.Replace(method.Name, " ");
 
-		public static TMethodDelegate CreateDelegate<TMethodDelegate>(this MethodInfo method) where TMethodDelegate : Delegate => method.CreateDelegate<TMethodDelegate>(new Sorter());
+		public static TMethodDelegate GetMethod<TMethodDelegate>(this MethodInfo method) where TMethodDelegate : Delegate => method.CreateDelegate<TMethodDelegate>(new Sorter());
 
 		public static string DisplayAvailableMethods(this MethodInfo[] availableMethods)
 		{

@@ -78,7 +78,7 @@ namespace Sort
 			Dictionary<string, TimeSpan> executions = new Dictionary<string, TimeSpan>();
 
 			foreach (MethodInfo method in SorterExtensions.GetAvailableMethods())
-				executions.Add(method.GetAlgorithmName(), TimeAlgorithm(method.CreateDelegate<Action<int[]>>(), vector.Copy()));
+				executions.Add(method.GetAlgorithmName(), TimeAlgorithm(method.GetMethod<Action<int[]>>(), vector.Copy()));
 
 			PrintBenchmark(executions);
 		}
@@ -87,7 +87,7 @@ namespace Sort
 		{
 			MethodInfo[] availableMethods = SorterExtensions.GetAvailableMethods();
 
-			return availableMethods[AskForAlgorithm(availableMethods)].CreateDelegate<Action<int[]>>();
+			return availableMethods[AskForAlgorithm(availableMethods)].GetMethod<Action<int[]>>();
 		}
 
 		public static void PrintVector(TimeSpan executionTime, int[] vector, int[] orderedVector)

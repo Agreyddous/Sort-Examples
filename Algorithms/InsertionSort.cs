@@ -1,3 +1,5 @@
+using Sort.Extensions;
+
 namespace Sort.Algorithms
 {
 	public partial class Sorter
@@ -16,7 +18,7 @@ namespace Sort.Algorithms
 
 					while (currentIndex != 0 && vector[currentIndex - 1] > vector[currentIndex])
 					{
-						Swap(vector, currentIndex - 1, currentIndex);
+						vector.Swap(currentIndex - 1, currentIndex);
 						currentIndex--;
 					}
 				}
