@@ -15,7 +15,7 @@ namespace Sort
 		{
 			while (true)
 			{
-				Console.Clear();
+				IO.Clear();
 
 				if (int.TryParse(IO.Ask("What will be the vector's size?"), out int size) &&
 					int.TryParse(IO.Ask("What is the minimum value?"), out int minimum) &&
@@ -76,8 +76,12 @@ namespace Sort
 		{
 			TimeSpan[] executionsResults = new TimeSpan[vectors.Length];
 
+			IO.Say($"Starting benchmark for {algorithm.Method.GetAlgorithmName()}");
+
 			for (int index = 0; index < vectors.Length; index++)
 				executionsResults[index] = TimeAlgorithm(algorithm, vectors[index].Copy());
+
+			IO.Say("Done");
 
 			return TimeSpan.FromTicks(executionsResults.Sum(executionResult => executionResult.Ticks) / vectors.Length);
 		}
@@ -87,10 +91,16 @@ namespace Sort
 			if (!int.TryParse(IO.Ask("How many times should each algorithm be executed? (Default is 100)"), out int executionsCount))
 				executionsCount = 100;
 
+			IO.Clear();
+
+			IO.Say($"Initializing {executionsCount} random vector(s) with a size of {size} and values ranging from {minimum} to {maximum}");
+
 			int[][] vectors = new int[executionsCount][];
 
 			for (int index = 0; index < executionsCount; index++)
 				vectors[index] = new int[size].Initialize(minimum, maximum);
+
+			IO.Say("Done initializing vectors\n");
 
 			Dictionary<string, TimeSpan> executions = new Dictionary<string, TimeSpan>();
 
@@ -109,8 +119,8 @@ namespace Sort
 
 		public static void PrintVector(TimeSpan executionTime, int[] vector, int[] orderedVector)
 		{
-			Console.Clear();
-			Console.WriteLine($"Sort completed in {executionTime}");
+			IO.Clear();
+			IO.Say($"Sort completed in {executionTime}");
 
 			IO.Pause();
 
@@ -120,22 +130,20 @@ namespace Sort
 			{
 				bool invalidItem = (index != vector.Length - 1 && orderedVector[index] > orderedVector[index + 1]);
 
-				Console.WriteLine($"{index} - {vector[index]} -> {orderedVector[index]}{(invalidItem ? " -- INVALID" : string.Empty)}");
+				IO.Say($"{index} - {vector[index]} -> {orderedVector[index]}{(invalidItem ? " -- INVALID" : string.Empty)}");
 				invalid = invalid || invalidItem;
 			}
 
 			if (invalid)
-				Console.WriteLine("\nSort was not valid, some errors have been found!");
+				IO.Say("\nSort was not valid, some errors have been found!");
 		}
 
 		public static void PrintBenchmark(Dictionary<string, TimeSpan> executions, int executionsCount)
 		{
-			Console.Clear();
-
-			Console.WriteLine($"Each algorithm was executed {executionsCount} time(s)\n");
+			IO.Say($"Each algorithm was executed {executionsCount} time(s)\n");
 
 			foreach (KeyValuePair<string, TimeSpan> execution in executions.OrderBy(execution => execution.Value))
-				Console.WriteLine($"{execution.Key} - {execution.Value}");
+				IO.Say($"{execution.Key} - {execution.Value}");
 		}
 	}
 }

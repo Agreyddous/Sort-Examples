@@ -5,14 +5,18 @@ namespace Sort.Helpers
 {
 	public class IOHelper
 	{
+		public void Say(string message) => Console.WriteLine(message);
+
+		public void Clear() => Console.Clear();
+
 		public void Pause()
 		{
-			Console.WriteLine("\nPress any key to continue...");
+			Say("\nPress any key to continue...");
 			Console.ReadKey();
 			Console.WriteLine();
 		}
 
-		public void InvalidValue() => Console.WriteLine("\nInvalid value provided");
+		public void InvalidValue() => Say("\nInvalid value provided");
 
 		public string Ask(string question, params object[] parameters)
 		{
