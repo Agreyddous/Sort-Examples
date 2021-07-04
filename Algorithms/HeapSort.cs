@@ -5,27 +5,27 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void HeapSort(int[] vector)
+		public void HeapSort(int[] vector) => _heapSort(vector, 0, vector.Length);
+
+		private void _heapSort(int[] vector, int start, int end)
 		{
-			_createHeap(vector, vector.Length);
+			_createHeap(vector, start, end--);
 
-			int end = vector.Length - 1;
-
-			while (end > 0)
+			while (end > start)
 			{
-				vector.Swap(end, 0);
-				end--;
+				vector.Swap(end--, start);
 
-				_orderHeap(vector, 0, end);
+				_orderHeap(vector, start, end);
 			}
 		}
 
-		private void _createHeap(int[] vector, int size)
+		private void _createHeap(int[] vector, int start, int end)
 		{
-			int start = (int)Math.Floor((decimal)(size - 2) / 2);
+			int size = end - start;
+			int heaptStart = (int)Math.Floor((decimal)(size - 2) / 2);
 
-			while (start >= 0)
-				_orderHeap(vector, start--, size - 1);
+			while (heaptStart >= 0)
+				_orderHeap(vector, heaptStart--, size - 1);
 		}
 
 		private void _orderHeap(int[] vector, int start, int end)
