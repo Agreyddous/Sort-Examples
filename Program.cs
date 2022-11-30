@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Sort.Extensions;
 using Sort.Helpers;
 
@@ -97,8 +98,7 @@ namespace Sort
 
 			int[][] vectors = new int[executionsCount][];
 
-			for (int index = 0; index < executionsCount; index++)
-				vectors[index] = new int[size].Initialize(minimum, maximum);
+			Parallel.For(0, executionsCount, index => vectors[index] = new int[size].Initialize(minimum, maximum));
 
 			IO.Say("Done initializing vectors\n");
 
