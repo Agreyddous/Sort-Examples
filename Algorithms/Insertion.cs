@@ -4,7 +4,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void InsertionSort(int[] vector)
+		public void Insertion(int[] vector)
 		{
 			bool sorted;
 

@@ -4,7 +4,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void OddEvenSort(int[] vector)
+		public void OddEven(int[] vector)
 		{
 			bool sorted;
 

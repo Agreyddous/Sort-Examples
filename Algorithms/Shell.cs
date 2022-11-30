@@ -4,7 +4,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void ShellSort(int[] vector)
+		public void Shell(int[] vector)
 		{
 			foreach (int gap in _shellSortGaps(vector.Length))
 			{

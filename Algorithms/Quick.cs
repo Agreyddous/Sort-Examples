@@ -4,16 +4,16 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void QuickSort(int[] vector) => _quickRecursiveSort(vector, 0, vector.Length - 1);
+		public void Quick(int[] vector) => _quickRecursive(vector, 0, vector.Length - 1);
 
-		private void _quickRecursiveSort(int[] vector, int start, int end)
+		private void _quickRecursive(int[] vector, int start, int end)
 		{
 			if (start < end)
 			{
 				int middle = _quickBreak(vector, start, end);
 
-				_quickRecursiveSort(vector, start, middle - 1);
-				_quickRecursiveSort(vector, middle + 1, end);
+				_quickRecursive(vector, start, middle - 1);
+				_quickRecursive(vector, middle + 1, end);
 			}
 		}
 

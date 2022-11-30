@@ -4,7 +4,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void BubbleSort(int[] vector)
+		public void Bubble(int[] vector)
 		{
 			bool sorted;
 			int compareLimit = vector.Length - 1;

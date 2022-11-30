@@ -4,7 +4,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void CocktailSort(int[] vector)
+		public void Cocktail(int[] vector)
 		{
 			bool sorted;
 

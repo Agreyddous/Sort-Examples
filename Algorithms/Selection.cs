@@ -4,7 +4,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void SelectionSort(int[] vector)
+		public void Selection(int[] vector)
 		{
 			for (int iteratorIndex = 0; iteratorIndex < vector.Length - 1; iteratorIndex++)
 			{

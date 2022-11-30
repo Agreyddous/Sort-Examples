@@ -2,7 +2,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void CountSort(int[] vector)
+		public void Count(int[] vector)
 		{
 			int largestValue = _countLargestValue(vector);
 

@@ -5,9 +5,9 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void HeapSort(int[] vector) => _heapSort(vector, 0, vector.Length);
+		public void Heap(int[] vector) => _heap(vector, 0, vector.Length);
 
-		private void _heapSort(int[] vector, int start, int end)
+		private void _heap(int[] vector, int start, int end)
 		{
 			_createHeap(vector, start, end--);
 

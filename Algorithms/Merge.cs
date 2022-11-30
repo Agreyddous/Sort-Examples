@@ -2,7 +2,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void MergeSort(int[] vector) => _mergeBreak(vector, 0, vector.Length - 1);
+		public void Merge(int[] vector) => _mergeBreak(vector, 0, vector.Length - 1);
 
 		private void _mergeBreak(int[] vector, int start, int end)
 		{

@@ -2,7 +2,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void RadixSort(int[] vector)
+		public void Radix(int[] vector)
 		{
 			int largestValue = _countLargestValue(vector);
 

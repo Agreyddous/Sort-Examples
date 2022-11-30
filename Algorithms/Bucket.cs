@@ -5,7 +5,7 @@ namespace Sort.Algorithms
 {
 	public partial class Sorter
 	{
-		public void BucketSort(int[] vector)
+		public void Bucket(int[] vector)
 		{
 			int largestValue = _countLargestValue(vector);
 
@@ -22,7 +22,7 @@ namespace Sort.Algorithms
 			foreach (List<int> bucketList in bucketLists)
 			{
 				int[] bucketArray = bucketList.ToArray();
-				InsertionSort(bucketArray);
+				Insertion(bucketArray);
 
 				foreach (int value in bucketArray)
 					vector[index++] = value;
